@@ -1,0 +1,31 @@
+Prezenta aplicatie are ca scop utilizarea modelului Mvvm in Android Java.
+Aplicatia consta in introducerea a numelui si prenumelui unei persoane
+si afisarea acestora instantaneu intro unitate textview. 
+modelul mvvm din acest exemplu este format din :
+
+1.Model - zona de stocare a variabilelor utilizate
+2.ModelView - myViewModel interfata intre model si view
+3.View - activity_layout
+
+Main nu are rolul decit de instantarea a elementelor.
+
+Fisierul activity_lauout se creaza cu trei elemente principale 2 edittext 1 textview,
+elementul buton din fisierul meu poate fi eliminat.
+1.Creem  clasa Model unde vom stoca informatiile nume si prenume.
+	adaugam constructor si metodele getter setter pentru fiecare variabila. 
+2. Creem clasa MyViewModel extensie a clasei BaseObservable, aceasta face legatura intre model 
+	si view(activity_layout), urmarin modificarile survenite in view si actualizarea lor.
+	Constructorul instanteaza clasa Model, si cele doua metode citesc edittext si le 
+	transfera la model spre memorare, si inapoi l textviw spre afisare prin variabila nume=model
+3.Transformam activity_layout in forma actuala, @{model.nume} transfera spre afisare nume,
+	@={model.nume} citeste nume ce este tastat .
+4.In main se completeaza cu cele prezentate, creaza o clasa legatura, instanteaza myviewmodel,
+5.Build.grandie(module...) in sectiunea android se completeaza cu : 
+
+	"dataBinding{
+            enable=true
+        }"
+ si implementation 'android.arch.lifecycle:extensions:1.1.1'
+6. Si in cazul in care se semnalizeaza o eroare de Definire dubla a unei clase :
+
+	in grandle.properties adaugam l"android.enableJetifier=true"
